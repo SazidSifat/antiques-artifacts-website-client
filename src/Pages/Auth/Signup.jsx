@@ -1,14 +1,21 @@
 import Lottie from 'lottie-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaGoogle } from 'react-icons/fa6';
 import register from '../../assets/lottie/Animation - 1749619178406.json'
 import { toast } from 'react-toastify';
 import useAuth from '../../Hooks/useAuth';
+import { Link, useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 
 const Signup = () => {
 
-    const { createWithEmailPassword, updateUserProfile } = useAuth()
+    useEffect(() => { document.title = "Antiques | Sign Up Now" }, [])
+
+    const { createWithEmailPassword, updateUserProfile, withGoogle, setLoading } = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+
 
 
     const handleSignUp = (e) => {
@@ -29,17 +36,51 @@ const Signup = () => {
             createWithEmailPassword(email, password)
                 .then(() => {
                     updateUserProfile({ displayName: name, photoURL: photo })
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Registration Successful !",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    setLoading(false)
+                    location.state ? navigate(location.state) : navigate("/")
+
                 })
                 .catch(err => {
-                    console.log(err);
                     if (err.code === "auth/email-already-in-use") {
-                        toast.error("Email Already Exist ")
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Email Already Exist",
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+
                     }
+                    setLoading(false)
                 })
 
         }
 
+    }
 
+    // google
+    const handleGoogleSignUp = () => {
+        withGoogle()
+            .then(() => {
+                location.state ? navigate(location.state) : navigate("/")
+                setLoading(false)
+
+            })
+            .catch(err => {
+                setLoading(false)
+                if (err.code === "auth/invalid-credential") {
+                    toast.error("Invalid Credential.")
+                } else {
+                    toast.error(err.message)
+                }
+            })
     }
 
     return (
@@ -77,12 +118,13 @@ const Signup = () => {
                     </form>
                     <div className="divider">OR</div>
                     <div className='w-full'>
-                        <button className='py-3 w-full cursor-pointer bg-secondary text-secondary-content rounded  flex items-center justify-center gap-3'>
+                        <button onClick={handleGoogleSignUp} className='py-3 w-full cursor-pointer bg-secondary text-secondary-content rounded  flex items-center justify-center gap-3'>
                             <FaGoogle size={22} />
                             Sign Up with Google
                         </button>
 
                     </div>
+                    <p className='desc font-medium'>Already Have Account ? <Link className='font-bold text-primary hover:underline' to='/login'>Sign In</Link></p>
 
 
 

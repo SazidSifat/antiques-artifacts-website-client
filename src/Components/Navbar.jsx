@@ -4,12 +4,12 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { RxCross2 } from 'react-icons/rx';
 import useAuth from '../Hooks/useAuth';
 import { toast } from 'react-toastify';
-
-
-
+import def from '../assets/defaultProPic.png'
+import ThemeControler from '../Theme/ThemeControler';
 
 
 const Navbar = () => {
+
     const [toggle, setToggle] = useState(false)
     const [drop, setDrop] = useState(false)
     const { user, signOutUser } = useAuth();
@@ -47,36 +47,39 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-            {
-                user ? <div onClick={() => { setDrop(!drop) }} className='p-0.5  cursor-pointer rounded-full bg-secondary flex items-center justify-center'>
-                    <img src={user.photoURL} alt="profile-Image" className='rounded-full w-10' />
+            <div className='flex items-center justify-center '>
+                <ThemeControler />
+                {
+                    user ? <div className='p-0.5  cursor-pointer rounded-full bg-secondary flex items-center justify-center'>
+                        <img onClick={() => { setDrop(!drop) }} src={user.photoURL} alt="profile-Image" className='rounded-full w-10' />
 
 
-                    <div className={`absolute z-10 ${drop ? "top-20" : "-top-96"} right-6 lg:right-48 duration-500 p-6 bg-base-300 whitespace-nowrap rounded`}>
-                        <div className='flex flex-col items-start gap-3 heading font-semibold'>
-                            <h1 className='font-bold'>Name: {user.displayName}</h1>
-                            <Link className='hover:text-primary hover:underline'>My Artifacts</Link>
-                            <Link className='hover:text-primary hover:underline'>Liked Artifacts</Link>
-                            <button onClick={handlesignOutUser} className='py-2.5 px-5 text-white bg-red-400 rounded'>
-                                Log Out
-                            </button>
+                        <div className={`absolute z-10 ${drop ? "top-20" : "-top-96"} right-6 lg:right-48 duration-500 p-6 bg-base-300 whitespace-nowrap rounded`}>
+                            <div className='flex flex-col items-start gap-3 heading font-semibold'>
+                                <h1 className='font-bold'>Name: {user.displayName}</h1>
+                                <Link className='hover:text-primary hover:underline'>My Artifacts</Link>
+                                <Link className='hover:text-primary hover:underline'>Liked Artifacts</Link>
+                                <button onClick={handlesignOutUser} className='py-2.5 px-5 text-white bg-red-400 rounded'>
+                                    Log Out
+                                </button>
+                            </div>
+
                         </div>
 
-                    </div>
 
+                    </div> :
+                        <div className=' heading font-semibold flex items-center  gap-6'>
+                            <Link to='/login' className='py-3 px-6 border border-primary rounded'>
+                                Log In
+                            </Link>
+                            <Link to='/signUp' className='py-3 px-6 bg-primary text-primary-content rounded hidden lg:block'>
+                                Sign Up
+                            </Link>
 
-                </div> :
-                    <div className=' heading font-semibold flex items-center  gap-6'>
-                        <Link to='/login' className='py-3 px-6 border border-primary rounded'>
-                            Log In
-                        </Link>
-                        <Link to='/signUp' className='py-3 px-6 bg-primary text-primary-content rounded hidden lg:block'>
-                            Sign Up
-                        </Link>
+                        </div>
+                }
 
-                    </div>
-            }
-
+            </div>
 
 
 

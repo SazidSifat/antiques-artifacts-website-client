@@ -99,9 +99,9 @@
 
 }
 
-.active{
-  color: #8B5E3C; 
-  border-bottom: 1px solid #8B5E3C ;
+.active {
+  color: #8B5E3C;
+  border-bottom: 1px solid #8B5E3C;
 }
 
 
@@ -109,6 +109,23 @@
   font-family: "Cinzel", serif;
 }
 
-.desc {
+body {
   font-family: "Merriweather", serif;
+}
+
+
+/* Change arrow color */
+.swiper-button-next,
+.swiper-button-prev {
+  font-weight: lighter;
+  font-size: 1rem;
+  color: #8B5E3C;
+  transition: color 0.3s ease;
+}
+
+/* Optional: customize size or hover */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  color: #BC7E4B;
+  transform: scale(1.1);
 }

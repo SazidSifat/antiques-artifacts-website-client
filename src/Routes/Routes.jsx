@@ -6,6 +6,7 @@ import AllArtifacts from "../Pages/AllArtifacts";
 import Login from "../Pages/Auth/Login";
 import Signup from "../Pages/Auth/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AddArtifact from "../Pages/AddArtifact";
 
 export const routes = createBrowserRouter([
     {
@@ -17,7 +18,11 @@ export const routes = createBrowserRouter([
                 element: <Home />
             }, {
                 path: '/all-artifacts',
-                element: <PrivateRoute><AllArtifacts /></PrivateRoute>
+                element: <AllArtifacts />
+            },
+            {
+                path: '/add-artifacts',
+                element: <PrivateRoute><AddArtifact /></PrivateRoute>
             },
 
 

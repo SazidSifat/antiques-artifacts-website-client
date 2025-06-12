@@ -5,29 +5,67 @@ import { FaGoogle } from 'react-icons/fa6';
 import { AuthCotext } from '../../Contexts/AuthContext';
 import useAuth from '../../Hooks/useAuth';
 import { toast } from 'react-toastify';
+import { Link, useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 
 const Login = () => {
 
-    const { withGoogle } = useAuth()
-    console.log(withGoogle);
+
+    useEffect(() => { document.title = "Antiques | Login Now" }, [])
+
+    const { withGoogle, emailPassLogin, authLoading, setLoading } = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
 
 
     const handleLogin = (e) => {
         e.preventDefault();
 
-        console.log(e.target.email.value);
-        console.log(e.target.password.value);
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        emailPassLogin(email, password)
+            .then(() => {
+                location.state ? navigate(location.state) : navigate("/")
+                setLoading(false)
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successful !",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+
+            })
+            .catch(err => {
+                setLoading(false)
+                if (err.code === "auth/invalid-credential") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Invalid Credential !",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                } else {
+                    toast.error(err.message)
+                }
+            })
 
     }
     const handlegoogleLogin = () => {
         withGoogle()
-            .then(res => console.log(res))
+            .then(() => {
+                location.state ? navigate(location.state) : navigate("/")
+                setLoading(false)
+            })
             .catch(err => {
-                
+                setLoading(false)
                 if (err.code === "auth/invalid-credential") {
                     toast.error("Invalid Credential.")
-                }else{
+                } else {
                     toast.error(err.message)
                 }
             })
@@ -66,10 +104,15 @@ const Login = () => {
                     <div className='w-full'>
                         <button onClick={handlegoogleLogin} className='py-3 cursor-pointer w-full bg-secondary text-secondary-content rounded  flex items-center justify-center gap-3'>
                             <FaGoogle size={22} />
-                            Log In with Google
+                            {
+                                authLoading ? <span className="loading loading-bars loading-lg"></span> : " Log In with Google"
+                            }
+
                         </button>
 
                     </div>
+
+                    <p className='desc font-medium'>Don't Have Account ? <Link className='font-bold text-primary hover:underline' to='/signUp'>Sign Up</Link></p>
 
 
 
