@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { motion, scale } from "motion/react"
+import { motion } from "motion/react"
 import { Slide } from 'react-awesome-reveal';
 
 const Banner = () => {

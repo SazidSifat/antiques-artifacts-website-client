@@ -4,7 +4,6 @@ import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { RxCross2 } from 'react-icons/rx';
 import useAuth from '../Hooks/useAuth';
 import { toast } from 'react-toastify';
-import def from '../assets/defaultProPic.png'
 import ThemeControler from '../Theme/ThemeControler';
 
 
@@ -59,7 +58,7 @@ const Navbar = () => {
                                 <h1 className='font-bold'>Name: {user.displayName}</h1>
                                 <Link className='hover:text-primary hover:underline'>My Artifacts</Link>
                                 <Link className='hover:text-primary hover:underline'>Liked Artifacts</Link>
-                                <button onClick={handlesignOutUser} className='py-2.5 px-5 text-white bg-red-400 rounded'>
+                                <button onClick={handlesignOutUser} className='py-2.5 px-5  text-white bg-red-400 rounded hover:opacity-90'>
                                     Log Out
                                 </button>
                             </div>
@@ -69,10 +68,10 @@ const Navbar = () => {
 
                     </div> :
                         <div className=' heading font-semibold flex items-center  gap-6'>
-                            <Link to='/login' className='py-3 px-6 border border-primary rounded'>
+                            <Link to='/login' className='py-3 px-6 hover:opacity-90 border border-primary rounded'>
                                 Log In
                             </Link>
-                            <Link to='/signUp' className='py-3 px-6 bg-primary text-primary-content rounded hidden lg:block'>
+                            <Link to='/signUp' className='py-3 px-6 hover:opacity-90 bg-primary text-primary-content rounded hidden lg:block'>
                                 Sign Up
                             </Link>
 
@@ -80,11 +79,6 @@ const Navbar = () => {
                 }
 
             </div>
-
-
-
-
-
 
             <div className={`absolute sm:hidden  z-50 bg-base-100 h-[1500px] shadow-2xl w-[65%] top-3 transition-all duration-500 ${toggle ? 'left-0' : '-left-[500px]'}`} >
 

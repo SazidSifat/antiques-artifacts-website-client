@@ -23,15 +23,18 @@ const ThemeControler = () => {
     }
 
     return (
-        <div className='flex items-center justify-center'>
-            <button className='px-6' onClick={toggleTheme}>{theme === "mytheme" ? <motion.div
+        <div className='flex items-center justify-center  ' >
+            <button className='px-6 cursor-pointer ' onClick={toggleTheme}>{theme === "mytheme" ? <motion.div
                 key="sun"
                 initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
                 animate={{ opacity: 1, rotate: 0, scale: 1 }}
                 exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
                 transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.2 }}
+
+
             >
-                <WiDaySunny size={29} />
+                <WiDaySunny size={29}  />
             </motion.div>
                 : <motion.div
                     key="moon"
@@ -39,6 +42,7 @@ const ThemeControler = () => {
                     animate={{ opacity: 1, rotate: 0, scale: 1 }}
                     exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
                     transition={{ duration: 0.5 }}
+                    whileHover={{ scale: 1.2 }}
                 >
                     <PiMoonStarsDuotone size={25} />
                 </motion.div>}</button>
