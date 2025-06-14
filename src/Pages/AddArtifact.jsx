@@ -13,8 +13,11 @@ const AddArtifact = () => {
         const form = e.target
         const formData = new FormData(form)
         const artifact = Object.fromEntries(formData.entries());
+        artifact.likeCount = 0;
 
         console.log(artifact)
+
+
 
         axios.post('http://localhost:3000/artifacts', artifact)
             .then(res => {
@@ -55,10 +58,10 @@ const AddArtifact = () => {
                     <input name="discoveredBy" placeholder="Discovered By" className="p-3 rounded border  border-primary bg-surface" required />
                     <input name="location" placeholder="Present Location" className="p-3 rounded border  border-primary bg-surface" required />
                     <input name="context" placeholder="Historical Context" className="p-3 rounded border  border-primary bg-surface" required />
-                    <input name="location" value={user.displayName} readOnly className="p-3 rounded border text-gray-600  border-primary bg-surface" required />
-                    <input name="context" value={user.email} readOnly className="p-3 rounded border text-gray-600  border-primary bg-surface" required />
+                    <input name="userName" value={user.displayName} readOnly className="p-3 rounded border text-gray-600  border-primary bg-surface" required />
+                    <input name="userEmail" value={user.email} readOnly className="p-3 rounded border text-gray-600  border-primary bg-surface" required />
                     <textarea rows="4" name="description" placeholder="Short Description" className="p-3 rounded border  border-primary bg-surface md:col-span-2" required></textarea>
-                    <button type="submit"  className="bg-primary cursor-pointer text-primary-content py-3 px-6 rounded hover:opacity-90 md:col-span-2">
+                    <button type="submit" className="bg-primary cursor-pointer text-primary-content py-3 px-6 rounded hover:opacity-90 md:col-span-2">
                         Add Artifact
                     </button>
                 </form>

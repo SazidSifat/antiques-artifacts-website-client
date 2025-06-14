@@ -50,14 +50,14 @@ const Navbar = () => {
                 <ThemeControler />
                 {
                     user ? <div className='p-0.5  cursor-pointer rounded-full bg-secondary flex items-center justify-center'>
-                        <img onClick={() => { setDrop(!drop) }} src={user.photoURL} alt="profile-Image" className='rounded-full w-10' />
+                        <img onClick={() => { setDrop(!drop) }} referrerPolicy='no-referrer' src={user.photoURL} alt='Image' className='rounded-full w-10' />
 
 
                         <div className={`absolute z-10 ${drop ? "top-20" : "-top-96"} right-6 lg:right-48 duration-500 p-6 bg-base-300 whitespace-nowrap rounded`}>
                             <div className='flex flex-col items-start gap-3 heading font-semibold'>
                                 <h1 className='font-bold'>Name: {user.displayName}</h1>
-                                <Link className='hover:text-primary hover:underline'>My Artifacts</Link>
-                                <Link className='hover:text-primary hover:underline'>Liked Artifacts</Link>
+                                <Link onClick={() => { setDrop(!drop) }}  to='/myArtifacts' className='hover:text-primary hover:underline'>My Artifacts</Link>
+                                <Link onClick={() => { setDrop(!drop) }} className='hover:text-primary hover:underline'>Liked Artifacts</Link>
                                 <button onClick={handlesignOutUser} className='py-2.5 px-5  text-white bg-red-400 rounded hover:opacity-90'>
                                     Log Out
                                 </button>
@@ -80,7 +80,7 @@ const Navbar = () => {
 
             </div>
 
-            <div className={`absolute sm:hidden  z-50 bg-base-100 h-[1500px] shadow-2xl w-[65%] top-3 transition-all duration-500 ${toggle ? 'left-0' : '-left-[500px]'}`} >
+            <div className={`absolute lg:hidden  z-50 bg-base-100 h-[1500px] shadow-2xl w-[65%] md:w-[40%] top-3 transition-all duration-500 ${toggle ? 'left-0' : '-left-[800px]'}`} >
 
 
                 <div className='place-items-end p-6 border-base-300 border-x-0 border-t-0 w-full  border-b-1 '>

@@ -7,6 +7,10 @@ import Login from "../Pages/Auth/Login";
 import Signup from "../Pages/Auth/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddArtifact from "../Pages/AddArtifact";
+import ArtifactsDetails from "../Pages/ArtifactsDetails";
+import axios from "axios";
+import Myartifacts from "../Pages/Myartifacts";
+import UpdateArtifacts from "../Pages/UpdateArtifacts";
 
 export const routes = createBrowserRouter([
     {
@@ -21,9 +25,26 @@ export const routes = createBrowserRouter([
                 element: <AllArtifacts />
             },
             {
+                path: "/artifacts-details/:id",
+                element: <PrivateRoute><ArtifactsDetails /></PrivateRoute>,
+                loader: ({ params }) => axios.get(`http://localhost:3000/artifacts/${params.id}`)
+            },
+            {
                 path: '/add-artifacts',
                 element: <PrivateRoute><AddArtifact /></PrivateRoute>
             },
+            {
+                path: '/update-artifacts/:id',
+                element: <PrivateRoute><UpdateArtifacts /></PrivateRoute>,
+                loader: ({ params }) => axios.get(`http://localhost:3000/artifacts/${params.id}`)
+
+            },
+            {
+                path: '/myArtifacts',
+                element: <PrivateRoute><Myartifacts /></PrivateRoute>,
+            },
+
+
 
 
 

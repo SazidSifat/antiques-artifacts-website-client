@@ -13,7 +13,7 @@ const Banner = () => {
                 navigation={true}
                 pagination={true}
                 modules={[Pagination, Navigation, Autoplay]}
-                autoplay={{ delay: 4000 }}
+                autoplay={{ delay: 3000 }}
                 loop={true}
                 className="mySwiper min-h-[90vh]">
                 {/* one */}
@@ -96,7 +96,7 @@ const Banner = () => {
 
                             <Slide duration={1500} direction='down' className=''>
                                 <h1 className='text-gray-200 text-4xl lg:text-7xl text-center'>
-                                   Preserving History Through <br /> Every Artifact
+                                    Preserving History Through <br /> Every Artifact
                                 </h1>
                             </Slide>
 
@@ -110,10 +110,6 @@ const Banner = () => {
                             </Slide>
 
                         </div>
-
-
-
-
                     </div>
                 </SwiperSlide>
 
