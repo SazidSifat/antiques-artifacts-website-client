@@ -1,14 +1,42 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
+import useAuth from '../Hooks/useAuth';
 
 const ArtifactsDetails = () => {
-    const liked = true
+    const { user } = useAuth()
+
 
     const { data } = useLoaderData()
-    console.log(data)
+    const { _id, name, image, context, discoveredAt, createdAt, description, discoveredBy, location, type, userEmail, userName, likedBy } = data;
+
+    const [likeCounts, setLikeCounts] = useState(data.likeCount || 0)
+    const [liketoggle, setLikeToggle] = useState(false)
 
 
-    const { _id, name, image, context, discoveredAt, createdAt, description, discoveredBy, location, type, userEmail, userName, likeCount } = data;
+
+
+    const liked = () => {
+        axios.patch(`http://localhost:3000/like-artifacts/${data._id}`, { email: user.email })
+            .then(res => {
+                if (res.data.like) {
+                    setLikeCounts(res.data.likeCount);
+                    setLikeToggle(prev => !prev)
+                } else {
+                    setLikeCounts(res.data.likeCount);
+                    setLikeToggle(prev => !prev)
+                }
+            })
+    }
+
+
+    useEffect(() => {
+        if (likedBy?.includes(user.email)) {
+            setLikeToggle(!liketoggle)
+            setLikeCounts(data.likeCount)
+        }
+
+    }, [likedBy, user.email])
 
     return (
         <div className='container mx-auto px-24 bg-base-200 my-10 rounded'>
@@ -36,8 +64,8 @@ const ArtifactsDetails = () => {
                             <p>{userName} <span className='text-sm'>({userEmail})</span></p>
                         </div>
                         <hr className='text-base-300 ' />
-                        <p className='py-1 '><span className='text-secondary font-bold'>Total Likes : </span><span  >{likeCount}</span></p>
-                        <button className='py-3 px-8 bg-primary text-primary-content  rounded'>Like</button>
+                        <p className='py-1 '><span className='text-secondary font-bold'>Total Likes : </span><span  >{likeCounts}</span></p>
+                        <button onClick={liked} className={`py-3 px-8 ${liketoggle ? "bg-secondary" : "bg-primary"} text-primary-content  rounded`}>{liketoggle ? "Liked" : "Like"}</button>
 
                     </div>
                 </div>

@@ -17,7 +17,7 @@ const Navbar = () => {
         signOutUser()
             .then(() => toast.success("Sign Out SucccesFul "))
             .catch((err) => {
-                console.log(err);
+                (err);
             })
     }
 
@@ -56,8 +56,8 @@ const Navbar = () => {
                         <div className={`absolute z-10 ${drop ? "top-20" : "-top-96"} right-6 lg:right-48 duration-500 p-6 bg-base-300 whitespace-nowrap rounded`}>
                             <div className='flex flex-col items-start gap-3 heading font-semibold'>
                                 <h1 className='font-bold'>Name: {user.displayName}</h1>
-                                <Link onClick={() => { setDrop(!drop) }}  to='/myArtifacts' className='hover:text-primary hover:underline'>My Artifacts</Link>
-                                <Link onClick={() => { setDrop(!drop) }} className='hover:text-primary hover:underline'>Liked Artifacts</Link>
+                                <Link onClick={() => { setDrop(!drop) }} to='/myArtifacts' className='hover:text-primary hover:underline'>My Artifacts</Link>
+                                <Link onClick={() => { setDrop(!drop) }} to='/myLikedArtifacts' className='hover:text-primary hover:underline'>Liked Artifacts</Link>
                                 <button onClick={handlesignOutUser} className='py-2.5 px-5  text-white bg-red-400 rounded hover:opacity-90'>
                                     Log Out
                                 </button>

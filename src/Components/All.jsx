@@ -151,7 +151,7 @@ const All = () => {
 
     useEffect(() => {
         axios.post("http://localhost:3000/all", name)
-            .then(res => console.log(res.data))
+            .then(res =>  (res.data))
     }, [])
 
 

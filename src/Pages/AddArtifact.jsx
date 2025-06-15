@@ -15,13 +15,13 @@ const AddArtifact = () => {
         const artifact = Object.fromEntries(formData.entries());
         artifact.likeCount = 0;
 
-        console.log(artifact)
+         (artifact)
 
 
 
         axios.post('http://localhost:3000/artifacts', artifact)
             .then(res => {
-                console.log(res.data)
+                 (res.data)
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",

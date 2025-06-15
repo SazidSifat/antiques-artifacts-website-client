@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ArtifactsCard from './artifactsCard';
 import { Link } from 'react-router';
+import FeatureCard from './FeatureCard';
 
 const FeatureCards = () => {
     const [features, setFeatures] = useState([])
@@ -13,7 +14,7 @@ const FeatureCards = () => {
             .then(res => setFeatures(res.data))
 
     }, [])
-    console.log(features)
+
 
 
 
@@ -24,7 +25,7 @@ const FeatureCards = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 px-6 md:px-0'>
 
                 {
-                    features.map(art => <ArtifactsCard art={art} />)
+                    features.map(art => <FeatureCard key={art._id} art={art} />)
                 }
 
             </div>

@@ -1,10 +1,8 @@
 import React from 'react';
-import { Fade, Zoom } from 'react-awesome-reveal';
 import { Link } from 'react-router';
 
-const ArtifactsCard = ({ art }) => {
-
-    const { _id, name, image, context, discoveredAt, createdAt } = art
+const LikedArtifactsdetails = ({ artifact }) => {
+    const { _id, name, image, context, discoveredAt, createdAt } = artifact
     return (
 
         <div className='p-6 space-y-6 border border-primary rounded bg-base-200'>
@@ -17,12 +15,6 @@ const ArtifactsCard = ({ art }) => {
                     <p className='opacity-80 text-xs h-[50px] overflow-hidden'>{context}</p>
                 </div>
                 <hr className='text-base-300' />
-                <div className='flex flex-col md:flex-row md:items-center justify-between md:px-3 opacity-80 '>
-                    <span className='font-semibold'>Created At : {createdAt}</span>
-                    <span className='font-semibold'>Discovered At : {discoveredAt}</span>
-                </div>
-                <hr className='text-base-300' />
-
                 <Link to={`/artifacts-details/${_id}`}>
                     <button className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</button>
                 </Link>
@@ -35,4 +27,4 @@ const ArtifactsCard = ({ art }) => {
     );
 };
 
-export default ArtifactsCard;
+export default LikedArtifactsdetails;

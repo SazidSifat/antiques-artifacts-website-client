@@ -39,7 +39,7 @@ const Myartifacts = () => {
                 title: "Deleted!",
                 text: "Your file has been deleted.",
                 icon: "success",
-                showConfirmButton:false,
+                showConfirmButton: false,
                 timer: 1000
               });
 

@@ -1,12 +1,10 @@
-import axios from 'axios';
-import React, { use } from 'react';
+import axios from 'axios'
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const UpdateArtifacts = () => {
 
     const { data } = useLoaderData();
-
-    console.log(data)
 
     const updateArtifacts = (e) => {
         e.preventDefault()
@@ -14,6 +12,29 @@ const UpdateArtifacts = () => {
         const form = e.target;
         const formData = new FormData(form)
         const artifacts = Object.fromEntries(formData.entries())
+
+        axios.put(`http://localhost:3000/artifacts/${data._id}`, artifacts)
+            .then(res => {
+
+                if (res.data.matchedCount === 1 && res.data.modifiedCount === 1) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Updated Succesfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else if (res.data.matchedCount === 1) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "No Change Made !",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                }
+            })
     }
 
 
