@@ -1,10 +1,24 @@
 import axios from 'axios'
-import { useLoaderData } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import Swal from 'sweetalert2';
+import useAuth from '../Hooks/useAuth';
 
 const UpdateArtifacts = () => {
+    const { id } = useParams()
+    const { user } = useAuth()
+    const [data, setData] = useState({});
 
-    const { data } = useLoaderData();
+    useEffect(() => {
+        axios.get(`http://localhost:3000/artifacts/${id}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`,
+                email: user.email
+            }
+        }).then((res) => {
+            setData(res.data)
+        })
+    }, [id, user.accessToken, user.email])
 
     const updateArtifacts = (e) => {
         e.preventDefault()
@@ -24,6 +38,8 @@ const UpdateArtifacts = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+
+
                 } else if (res.data.matchedCount === 1) {
                     Swal.fire({
                         position: "center",

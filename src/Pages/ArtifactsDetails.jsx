@@ -1,21 +1,42 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useParams } from 'react-router';
 import useAuth from '../Hooks/useAuth';
 
 const ArtifactsDetails = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
+    const params = useParams()
+
+    console.log(params.id)
 
 
-    const { data } = useLoaderData()
+    const [data, setData] = useState({})
     const { _id, name, image, context, discoveredAt, createdAt, description, discoveredBy, location, type, userEmail, userName, likedBy } = data;
 
     const [likeCounts, setLikeCounts] = useState(data.likeCount || 0)
     const [liketoggle, setLikeToggle] = useState(false)
 
+    useEffect(() => {
+        axios.get(`http://localhost:3000/artifacts/${params.id}`, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`,
+                email: user.email
+            }
 
 
+        })
+            .then((res) => {
+                const artifact = res.data;
+                setData(artifact);
+                setLikeCounts(artifact.likeCount || 0);
+                setLikeToggle(artifact.likedBy?.includes(user.email));
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }, [params.id, user.accessToken, user.email]);
 
+    // liked
     const liked = () => {
         axios.patch(`http://localhost:3000/like-artifacts/${data._id}`, { email: user.email })
             .then(res => {
@@ -28,15 +49,6 @@ const ArtifactsDetails = () => {
                 }
             })
     }
-
-
-    useEffect(() => {
-        if (likedBy?.includes(user.email)) {
-            setLikeToggle(!liketoggle)
-            setLikeCounts(data.likeCount)
-        }
-
-    }, [likedBy, user.email])
 
     return (
         <div className='container mx-auto px-24 bg-base-200 my-10 rounded'>

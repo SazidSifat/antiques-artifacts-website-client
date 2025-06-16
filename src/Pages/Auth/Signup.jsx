@@ -25,43 +25,52 @@ const Signup = () => {
         const photo = e.target.photo.value;
         const password = e.target.password.value;
 
-        if (password.length < 6) {
-            toast.error("Password Must be 6 Characters !")
-        } else if (!/(?=.*[a-z])/.test(password)) {
-            toast.error("Password Must Include Lowercase !")
 
-        } else if (!/(?=.*[A-Z])/.test(password)) {
-            toast.error("Password Must Include Uppercase !")
-        } else {
-            createWithEmailPassword(email, password)
-                .then(() => {
-                    updateUserProfile({ displayName: name, photoURL: photo })
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Registration Successful !",
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                    setLoading(false)
-                    location.state ? navigate(location.state) : navigate("/")
+        if (!email && !name && !photo && !password) {
+            toast.error("All Field Required")
+        }
+        else {
+            if (password.length < 6) {
+                toast.error("Password Must be 6 Characters !")
+            } else if (!/(?=.*[a-z])/.test(password)) {
+                toast.error("Password Must Include Lowercase !")
 
-                })
-                .catch(err => {
-                    if (err.code === "auth/email-already-in-use") {
+            } else if (!/(?=.*[A-Z])/.test(password)) {
+                toast.error("Password Must Include Uppercase !")
+            } else {
+                createWithEmailPassword(email, password)
+                    .then(() => {
+                        updateUserProfile({ displayName: name, photoURL: photo })
                         Swal.fire({
                             position: "center",
-                            icon: "error",
-                            title: "Email Already Exist",
+                            icon: "success",
+                            title: "Registration Successful !",
                             showConfirmButton: false,
                             timer: 1000
                         });
+                        setLoading(false)
+                        location.state ? navigate(location.state) : navigate("/")
 
-                    }
-                    setLoading(false)
-                })
+                    })
+                    .catch(err => {
+                        if (err.code === "auth/email-already-in-use") {
+                            Swal.fire({
+                                position: "center",
+                                icon: "error",
+                                title: "Email Already Exist",
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+
+                        }
+                        setLoading(false)
+                    })
+
+            }
 
         }
+
+
 
     }
 
@@ -97,19 +106,19 @@ const Signup = () => {
                         <div className='space-y-2'>
                             <div className='flex flex-col w-full'>
                                 <label htmlFor="name">Name</label>
-                                <input required name='name' className='py-3 px-4 border  border-primary rounded' type="text" placeholder='Enter Your Name' />
+                                <input name='name' className='py-3 px-4 border  border-primary rounded' type="text" placeholder='Enter Your Name' />
                             </div>
                             <div className='flex flex-col w-full'>
                                 <label htmlFor="email">Email</label>
-                                <input required name='email' className='py-3 px-4 border  border-primary rounded' type="email" placeholder='Enter Your Email' />
+                                <input name='email' className='py-3 px-4 border  border-primary rounded' type="email" placeholder='Enter Your Email' />
                             </div>
                             <div className='flex flex-col w-full'>
                                 <label htmlFor="photo">Photo</label>
-                                <input required name='photo' className='py-3 px-4 border  border-primary rounded' type="url" placeholder='Enter Photo URL' />
+                                <input name='photo' className='py-3 px-4 border  border-primary rounded' type="url" placeholder='Enter Photo URL' />
                             </div>
                             <div className='flex flex-col w-full'>
                                 <label htmlFor="password">Password</label>
-                                <input required name='password' className='py-3 px-4 border  border-primary rounded' type="password" placeholder='Enter Your Password' />
+                                <input name='password' className='py-3 px-4 border  border-primary rounded' type="password" placeholder='Enter Your Password' />
                             </div>
                         </div>
                         <button className='py-3 cursor-pointer w-full bg-primary rounded text-primary-content'>

@@ -3,18 +3,25 @@ import useAuth from '../Hooks/useAuth';
 import axios from 'axios';
 import MyArtifactsDetails from '../Components/MyArtifactsDetails';
 import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router';
+import { motion } from "motion/react"
 
 const Myartifacts = () => {
+  const navigate = useNavigate()
 
   const { user } = useAuth()
   const [artifacts, setArtifacts] = useState([])
 
   useEffect(() => {
 
-    axios.get(`http://localhost:3000/myArtifacts?email=${user.email}`)
+    axios.get(`http://localhost:3000/myArtifacts?email=${user.email}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      }
+    })
       .then((res) => setArtifacts(res.data))
 
-  }, [user.email,])
+  }, [user.email, user.accessToken])
 
 
 
@@ -30,7 +37,13 @@ const Myartifacts = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/artifacts/${id}`)
+        axios.delete(`http://localhost:3000/artifacts/${id}`, {
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+            email: user.email
+
+          }
+        })
           .then((res) => {
 
             if (res.data.deletedCount === 1) {
@@ -42,23 +55,25 @@ const Myartifacts = () => {
                 showConfirmButton: false,
                 timer: 1000
               });
-
+              navigate('/all-artifacts')
             }
           })
       }
     });
-
-
-
   }
 
   return (
-    <div className="min-h-screen bg-background p-6 text-text-primary">
+    <div className="min-h-[60vh] bg-background p-6 text-text-primary">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-primary mb-10 text-center">My Artifacts Collection</h2>
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {artifacts.map(artifact => <MyArtifactsDetails artifact={artifact} handleDelete={handleDelete} />)}
-        </div>
+        {
+          artifacts.length === 0 ? <div className='flex w-6/12 gap-6 mx-auto mt-10 items-center flex-col justify-center border border-base-300 p-10'>
+            <p className=' text-2xl text-center text-gray-500'>No Artifacts Found !</p>
+            <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }}><Link to='/add-artifacts' className='py-3 bg-secondary px-8 rounded  text-secondary-content'>Add an Artifacts</Link></motion.button>
+          </div> : <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {artifacts.map(artifact => <MyArtifactsDetails artifact={artifact} handleDelete={handleDelete} />)}
+          </div>
+        }
       </div>
     </div>
   );

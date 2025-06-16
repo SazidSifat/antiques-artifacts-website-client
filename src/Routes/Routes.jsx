@@ -12,6 +12,8 @@ import axios from "axios";
 import Myartifacts from "../Pages/Myartifacts";
 import UpdateArtifacts from "../Pages/UpdateArtifacts";
 import LikedArtifacts from "../Pages/LikedArtifacts";
+import Loading from "../Components/Loading";
+
 
 export const routes = createBrowserRouter([
     {
@@ -28,7 +30,6 @@ export const routes = createBrowserRouter([
             {
                 path: "/artifacts-details/:id",
                 element: <PrivateRoute><ArtifactsDetails /></PrivateRoute>,
-                loader: ({ params }) => axios.get(`http://localhost:3000/artifacts/${params.id}`)
             },
             {
                 path: '/add-artifacts',
@@ -37,8 +38,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/update-artifacts/:id',
                 element: <PrivateRoute><UpdateArtifacts /></PrivateRoute>,
-                loader: ({ params }) => axios.get(`http://localhost:3000/artifacts/${params.id}`)
-
+              
             },
             {
                 path: '/myArtifacts',
@@ -48,13 +48,6 @@ export const routes = createBrowserRouter([
                 path: '/myLikedArtifacts',
                 element: <PrivateRoute><LikedArtifacts /></PrivateRoute>,
             },
-
-
-
-
-
-
-
             {
                 path: '/login',
                 Component: Login

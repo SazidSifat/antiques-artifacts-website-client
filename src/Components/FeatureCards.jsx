@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ArtifactsCard from './artifactsCard';
 import { Link } from 'react-router';
 import FeatureCard from './FeatureCard';
+import { motion } from 'motion/react';
 
 const FeatureCards = () => {
     const [features, setFeatures] = useState([])
@@ -31,7 +32,9 @@ const FeatureCards = () => {
             </div>
 
             <div className='flex items-center justify-center'>
-                <Link to='/all-artifacts'><button className='py-3 px-10 bg-secondary rounded hover:opacity-90 cursor-pointer'>See All</button></Link>
+                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }} className='py-3 px-16 bg-secondary text-secondary-content rounded hover:opacity-90 cursor-pointer'>
+                    <Link to='/all-artifacts'>See All</Link>
+                </motion.button>
             </div>
         </div>
     );

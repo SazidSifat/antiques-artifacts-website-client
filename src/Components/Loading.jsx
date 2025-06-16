@@ -4,9 +4,8 @@ import data from '../assets/lottie/loading.json'
 
 const Loading = () => {
     return (
-        <div className='min-h-screen flex items-center justify-center'>
+        <div className='min-h-screen bg-base-300  flex items-center justify-center'>
             <Lottie className='w-20' animationData={data}></Lottie>
-            
         </div>
     );
 };

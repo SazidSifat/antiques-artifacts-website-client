@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import { motion } from 'motion/react'
+
 const FeatureCard = ({ art }) => {
     const { _id, name, image, type, description, likeCount } = art
     return (
@@ -21,7 +23,7 @@ const FeatureCard = ({ art }) => {
                 <hr className='text-base-300' />
 
                 <Link to={`/artifacts-details/${_id}`}>
-                    <button className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</button>
+                    <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .99 }} className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</motion.button>
                 </Link>
 
 
