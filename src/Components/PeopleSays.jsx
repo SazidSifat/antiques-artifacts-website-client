@@ -95,7 +95,7 @@ const PeopleSays = () => {
                         <SwiperSlide key={i}>
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
-                                className="rounded h-[25vh] bg-base-200 text-base-content p-6  flex flex-col justify-between transition-all duration-300"
+                                className="rounded  bg-base-200 text-base-content p-6  flex flex-col justify-between transition-all duration-300"
                             >
                                 <p className="italic text-lg mb-6">“{feedback}”</p>
                                 <div>

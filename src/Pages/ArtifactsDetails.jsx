@@ -60,7 +60,7 @@ const ArtifactsDetails = () => {
     }
 
     return (
-        <div className='container mx-auto px-24 bg-base-200 my-10 rounded'>
+        <div className='container mx-auto px-6 md:px-24 bg-base-200 my-10 rounded'>
             <div className='lg:px-6 py-10 space-y-6'>
 
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>

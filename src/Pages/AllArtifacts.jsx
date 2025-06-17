@@ -23,12 +23,12 @@ const AllArtifacts = () => {
             })
     }, [search])
 
-    
+
 
     const handleSearch = (e) => {
         e.preventDefault()
         const searchValue = e.target.search.value;
-     
+
         axios.get(` https://assignment-11-server-green-beta.vercel.app/artifacts?search=${searchValue}`)
             .then((res) => setArtifacts(res.data))
 
@@ -40,15 +40,9 @@ const AllArtifacts = () => {
         return <DataLoading />
     }
 
-
-
-
-
     return (
         <div className='py-10  container mx-auto space-y-10'>
             <h2 className="text-3xl lg:text-4xl  font-bold  text-primary text-center ">All Artifacts Collection.</h2>
-
-
 
             <div >
                 <div className='md:w-7/12 mx-auto bg-base-300 border border-secondary  rounded '>
@@ -59,11 +53,18 @@ const AllArtifacts = () => {
                 </div>
             </div>
 
-            <div className='container mx-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 px-10' >
-                {
-                    artifacts.map(art => <ArtifactsCard key={art._id} art={art} />)
-                }
-            </div>
+
+            {
+                artifacts.length === 0 ? <div className='flex lg:w-6/12 gap-6 mx-auto whitespace-nowrap mt-10 items-center flex-col justify-center border border-base-300 p-10'>
+                    <p className=' text-2xl text-center text-gray-500'>No Artifacts Found !</p>
+                </div> : <div className='container mx-auto grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 px-10' >
+                    {
+                        artifacts.map(art => <ArtifactsCard key={art._id} art={art} />)
+                    }
+                </div>
+            }
+
+
         </div>
     );
 };
