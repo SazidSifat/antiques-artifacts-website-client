@@ -63,9 +63,8 @@ const UpdateArtifacts = () => {
                     });
 
                 }
-            }).catch((err) => {
+            }).catch(() => {
                 setLoad(false);
-                console.error(err);
                 Swal.fire({
                     position: "center",
                     icon: "error",
