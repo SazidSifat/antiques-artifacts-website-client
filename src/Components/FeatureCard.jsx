@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { motion } from 'motion/react'
 
 const FeatureCard = ({ art }) => {
-    const { _id, name, image, type, description, likeCount } = art
+    const { _id, name, image, description, likeCount } = art
     return (
 
         <div className='p-6 space-y-6 border border-primary rounded bg-base-200'>

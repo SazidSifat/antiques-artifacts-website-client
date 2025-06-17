@@ -102,7 +102,7 @@ const UpdateArtifacts = () => {
                     <textarea defaultValue={data.description} rows="4" name="description" placeholder="Short Description" className="p-3 rounded border  border-primary bg-surface md:col-span-2" required></textarea>
                     <button type="submit" className="bg-primary cursor-pointer text-primary-content py-3 px-6 rounded hover:opacity-90 md:col-span-2">
                         {
-                            load ? <span className="loading loading-bars loading-lg"></span> : "Add Artifact"
+                            load ? <span className="loading loading-bars loading-lg"></span> : "Update Artifact"
                         }
                     </button>
                 </form>
