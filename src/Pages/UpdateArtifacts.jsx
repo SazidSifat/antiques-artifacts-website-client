@@ -12,6 +12,8 @@ const UpdateArtifacts = () => {
     const [load, setLoad] = useState(true);
 
     useEffect(() => {
+        document.title = "Update Artifacts";
+
         axios.get(` https://assignment-11-server-green-beta.vercel.app/artifacts/${id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,

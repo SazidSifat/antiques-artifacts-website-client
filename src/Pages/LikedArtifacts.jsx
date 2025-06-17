@@ -13,6 +13,9 @@ const LikedArtifacts = () => {
     const [load, setLoad] = useState(true)
 
     useEffect(() => {
+        document.title = "My Liked Artifacts";
+
+
         axios.get(`https://assignment-11-server-green-beta.vercel.app/liked?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,

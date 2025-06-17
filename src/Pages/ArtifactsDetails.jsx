@@ -20,6 +20,9 @@ const ArtifactsDetails = () => {
     const [liketoggle, setLikeToggle] = useState(false)
 
     useEffect(() => {
+
+           document.title = "Artifacts Details"
+        
         axios.get(`https://assignment-11-server-green-beta.vercel.app/artifacts/${params.id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,

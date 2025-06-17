@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../Hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -7,6 +7,8 @@ const AddArtifact = () => {
     const { user } = useAuth();
 
     const [load, setLoad] = useState(false)
+
+    useEffect(() => { document.title = "Antiques | Add Artifacts" }, [])
 
 
     const addArtifacts = (e) => {
