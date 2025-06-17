@@ -1,12 +1,67 @@
-# React + Vite
+# 🏛️ Historical Artifacts Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive web application to track, explore, and contribute historical artifacts from around the world.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Website
+🔗 [Live Site](https://historical-artifacts-5b376.web.app/)  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧠 Purpose
+
+This project is built as part of an advanced assignment to demonstrate full-stack MERN development skills with secure authentication, protected routes, dynamic data handling, and modern UI/UX practices.
+
+---
+
+## ✨ Key Features
+
+- 🔐 Firebase Authentication (Email/Password + Google)
+- 🔁 JWT-based Route Protection
+- 📦 MongoDB Atlas Database Integration
+- 🔍 Search Artifacts by Name
+- ❤️ Like/Unlike Toggle (stored in DB)
+- ➕ Add, Update, Delete Your Own Artifacts
+- 📂 View Liked Artifacts
+- 🎨 Responsive and Premium UI with Tailwind & DaisyUI & MambaUI
+- 🎬 Framer Motion Animations
+- 📱 Mobile-first Responsive Design
+- 🔎 Dynamic Page Titles
+- ⚠️ 404 Not Found Page
+- 📤 Firebase(client) & Vercel(server) Deployment
+
+
+## 📋 Pages & Routes
+
+Home Page with Banner, Top Liked Artifacts, Extra Sections |
+Email/Password and Google Login |
+New User Registration |
+Protected: Add Artifact Form |
+Protected: Full Artifact Details & Like Button |
+Browse all artifacts + Search |
+Protected: View, Update, Delete Your Artifacts |
+Protected: View Liked Artifacts |
+Protected: Update Form |
+ 404 Page |
+
+---
+
+## 📦 NPM Packages Used
+
+### Client
+- `react-router-dom`
+- `firebase`
+- `axios`
+- `react-toastify`
+- `sweetalert2`
+- `framer-motion`
+- `mambaUi` (Tailwind Component Library)
+- `react-icons`
+- `react-awesome-reveal`
+
+---
+
+## 🔐 Environment Variables
+
+### Client `.env`
