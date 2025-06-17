@@ -42,7 +42,13 @@ const ArtifactsDetails = () => {
 
     // liked
     const liked = () => {
-        axios.patch(` https://assignment-11-server-green-beta.vercel.app/like-artifacts/${data._id}`, { email: user.email })
+        axios.patch(` https://assignment-11-server-green-beta.vercel.app/like-artifacts/${data._id}`, { email: user.email }, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`,
+                email: user.email
+            }
+
+        })
             .then(res => {
                 if (res.data.like) {
                     setLikeCounts(res.data.likeCount);

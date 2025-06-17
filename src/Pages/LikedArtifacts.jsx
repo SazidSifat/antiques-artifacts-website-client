@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../Hooks/useAuth';
 import axios from 'axios';
 import MyArtifactsDetails from '../Components/MyArtifactsDetails';
