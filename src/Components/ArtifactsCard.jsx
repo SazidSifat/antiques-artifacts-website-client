@@ -1,6 +1,7 @@
 import React from 'react';
 import { Fade, Zoom } from 'react-awesome-reveal';
 import { Link } from 'react-router';
+import { motion } from 'motion/react';
 
 const ArtifactsCard = ({ art }) => {
 
@@ -23,8 +24,8 @@ const ArtifactsCard = ({ art }) => {
                 </div>
                 <hr className='text-base-300' />
 
-                <Link  to={`/artifacts-details/${_id}`}>
-                    <button className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</button>
+                <Link to={`/artifacts-details/${_id}`}>
+                    <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: .99 }} className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</motion.button>
                 </Link>
             </div>
         </div>

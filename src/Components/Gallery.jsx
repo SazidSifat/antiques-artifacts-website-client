@@ -1,4 +1,5 @@
 import React from 'react';
+import { Zoom } from 'react-awesome-reveal';
 import Masonry from 'react-masonry-css';
 
 const images = [
@@ -58,8 +59,8 @@ const Gallery = () => {
                         key={index}
                         className="overflow-hidden rounded shadow-lg cursor-pointer transform transition duration-500 hover:scale-105 hover:shadow-2xl"
                     >
-                        <img src={src} className="w-full h-auto rounded hover:grayscale" loading="lazy"
-                        />
+                        <Zoom><img src={src} className="w-full h-auto rounded hover:grayscale" loading="lazy"
+                        /></Zoom>
                     </div>
                 ))}
             </Masonry>
