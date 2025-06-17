@@ -14,7 +14,7 @@ const ArtifactsDetails = () => {
 
 
     const [data, setData] = useState({})
-    const { _id, name, image, context, discoveredAt, createdAt, description, discoveredBy, location, type, userEmail, userName, likedBy } = data;
+    const { _id, name, image, context, discoveredAt, createdAt, description, discoveredBy, location, type, userEmail, userName } = data;
 
     const [likeCounts, setLikeCounts] = useState(data.likeCount || 0)
     const [liketoggle, setLikeToggle] = useState(false)
@@ -38,7 +38,7 @@ const ArtifactsDetails = () => {
                 setLikeCounts(artifact.likeCount || 0);
                 setLikeToggle(artifact.likedBy?.includes(user.email));
             })
-            .catch((err) => {
+            .catch(() => {
 
             });
     }, [params.id, user.accessToken, user.email]);
