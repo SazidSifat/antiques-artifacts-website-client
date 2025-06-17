@@ -1,22 +1,32 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ArtifactsCard from './artifactsCard';
-import { Link } from 'react-router';
+import { Link, Links } from 'react-router';
 import FeatureCard from './FeatureCard';
 import { motion } from 'motion/react';
+import DataLoading from './DataLoading';
 
 const FeatureCards = () => {
     const [features, setFeatures] = useState([])
+
+    const [load, setLoad] = useState(true)
 
 
     useEffect(() => {
 
         axios.get('http://localhost:3000/featureCardinitial')
-            .then(res => setFeatures(res.data))
+            .then(res => {
+                setLoad(false)
+                setFeatures(res.data)
+            }).catch(() => {
+                setLoad(false)
+            })
 
     }, [])
 
-
+    if (load) {
+        return <DataLoading />
+    }
 
 
 
@@ -32,9 +42,9 @@ const FeatureCards = () => {
             </div>
 
             <div className='flex items-center justify-center'>
-                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }} className='py-3 px-16 bg-secondary text-secondary-content rounded hover:opacity-90 cursor-pointer'>
-                    <Link to='/all-artifacts'>See All</Link>
-                </motion.button>
+                <Link to='all-artifacts'><motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }} className='py-3 px-16 bg-secondary text-secondary-content rounded hover:opacity-90 cursor-pointer'>
+                    See All
+                </motion.button></Link>
             </div>
         </div>
     );

@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Swal from 'sweetalert2';
 import useAuth from '../Hooks/useAuth';
+import DataLoading from '../Components/DataLoading';
 
 const UpdateArtifacts = () => {
     const { id } = useParams()
     const { user } = useAuth()
     const [data, setData] = useState({});
+    const [load, setLoad] = useState(true);
 
     useEffect(() => {
         axios.get(`http://localhost:3000/artifacts/${id}`, {
@@ -16,11 +18,15 @@ const UpdateArtifacts = () => {
                 email: user.email
             }
         }).then((res) => {
+            setLoad(false)
             setData(res.data)
+        }).catch(() => {
+            setLoad(false)
         })
     }, [id, user.accessToken, user.email])
 
     const updateArtifacts = (e) => {
+        setLoad(true)
         e.preventDefault()
 
         const form = e.target;
@@ -31,6 +37,7 @@ const UpdateArtifacts = () => {
             .then(res => {
 
                 if (res.data.matchedCount === 1 && res.data.modifiedCount === 1) {
+                    setLoad(false)
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -41,6 +48,7 @@ const UpdateArtifacts = () => {
 
 
                 } else if (res.data.matchedCount === 1) {
+                    setLoad(false)
                     Swal.fire({
                         position: "center",
                         icon: "error",
@@ -50,19 +58,20 @@ const UpdateArtifacts = () => {
                     });
 
                 }
+            }).catch(() => {
+                setLoad(false)
             })
     }
 
-
-
-
-
-
+    if (load) {
+        return <DataLoading />
+    }
 
     return (
         <div className=' px-6 md:px-0 py-10    container mx-auto'>
             <div className=" bg-base-300 p-12 text-text-primary md:w-9/12 mx-auto rounded space-y-10">
                 <h2 className="text-3xl font-bold  text-primary text-center ">Update Artifact.</h2>
+
                 <form onSubmit={updateArtifacts} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input defaultValue={data.name} name="name" placeholder="Artifact Name" className="p-3 rounded border border-primary bg-surface" required />
                     <input defaultValue={data.image} name="image" placeholder="Image URL" className="p-3 rounded border  border-primary bg-surface" required />
@@ -80,9 +89,12 @@ const UpdateArtifacts = () => {
                     <input defaultValue={data.context} name="context" placeholder="Historical Context" className="p-3 rounded border  border-primary bg-surface" required />
                     <textarea defaultValue={data.description} rows="4" name="description" placeholder="Short Description" className="p-3 rounded border  border-primary bg-surface md:col-span-2" required></textarea>
                     <button type="submit" className="bg-primary cursor-pointer text-primary-content py-3 px-6 rounded hover:opacity-90 md:col-span-2">
-                        Update Artifact
+                        {
+                            load ? <span className="loading loading-bars loading-lg"></span> : "Add Artifact"
+                        }
                     </button>
                 </form>
+
             </div>
         </div>
     );

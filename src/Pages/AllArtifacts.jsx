@@ -2,29 +2,42 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ArtifactsCard from '../Components/artifactsCard';
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import DataLoading from '../Components/DataLoading';
 
 const AllArtifacts = () => {
     const [artifacts, setArtifacts] = useState([])
 
     const [search, setSearch] = useState('');
+    const [load, setLoad] = useState(true)
 
     useEffect(() => {
         document.title = "All Artifacts ";
 
 
         axios.get(`http://localhost:3000/artifacts?search=${search}`)
-            .then((res) => setArtifacts(res.data))
+            .then((res) => {
+                setLoad(false)
+                setArtifacts(res.data)
+            }).catch(() => {
+                setLoad(false)
+            })
     }, [search])
 
-    console.log(search)
+    
 
     const handleSearch = (e) => {
         e.preventDefault()
         const searchValue = e.target.search.value;
-        console.log(searchValue)
+     
         axios.get(`http://localhost:3000/artifacts?search=${searchValue}`)
             .then((res) => setArtifacts(res.data))
 
+    }
+
+
+
+    if (load) {
+        return <DataLoading />
     }
 
 
@@ -37,11 +50,11 @@ const AllArtifacts = () => {
 
 
 
-            <div>
-                <div className='w-7/12 mx-auto bg-base-300 border border-secondary  rounded  '>
-                    <form className='flex items-center justify-between' onSubmit={handleSearch}>
-                        <input onChange={(e) => setSearch(e.target.value)} type="text" name='search' className='w-[80%]  py-4 px-8  rounded focus:outline-none' placeholder='Search Artifacts' />
-                        <button type='submit' className='bg-primary flex items-center justify-center gap-2 py-4 px-16 text-primary-content rounded'>Search <FaMagnifyingGlass /> </button>
+            <div >
+                <div className='md:w-7/12 mx-auto bg-base-300 border border-secondary  rounded '>
+                    <form className='flex items-center justify-between ' onSubmit={handleSearch} >
+                        <input onChange={(e) => setSearch(e.target.value)} type="text" name='search' className='lg:w-[80%]  py-4 px-3 md:px-8  rounded focus:outline-none' placeholder='Search Artifacts' />
+                        <button type='submit' className='bg-primary flex items-center justify-center gap-2 py-4 px-6 lg:px-16 text-primary-content rounded'>Search <FaMagnifyingGlass /> </button>
                     </form>
                 </div>
             </div>

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import useAuth from '../Hooks/useAuth';
 import axios from 'axios';
 import MyArtifactsDetails from '../Components/MyArtifactsDetails';
 import LikedArtifactsdetails from '../Components/LikedArtifactsdetails';
+import DataLoading from '../Components/DataLoading';
 
 const LikedArtifacts = () => {
 
     const { user } = useAuth()
     const [artifacts, setArtifacts] = useState([])
+
+    const [load, setLoad] = useState(true)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/liked?email=${user.email}`, {
@@ -15,11 +18,21 @@ const LikedArtifacts = () => {
                 authorization: `Bearer ${user.accessToken}`,
             }
         })
-            .then((res) => setArtifacts(res.data))
-    }, [])
+            .then((res) => {
+                setLoad(false)
+                setArtifacts(res.data)
+            })
+            .catch(() => {
+                setLoad(false)
+            })
+    }, [user.accessToken, user.email])
 
-    console.log(artifacts)
 
+
+
+    if(load){
+        return <DataLoading/>
+    }
 
     return (
         <div className="min-h-[60vh] bg-background p-6 text-text-primary">

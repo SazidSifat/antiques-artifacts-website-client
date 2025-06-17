@@ -23,7 +23,7 @@ const ArtifactsCard = ({ art }) => {
                 </div>
                 <hr className='text-base-300' />
 
-                <Link onClick={() => console.log("data")} to={`/artifacts-details/${_id}`}>
+                <Link  to={`/artifacts-details/${_id}`}>
                     <button className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</button>
                 </Link>
             </div>

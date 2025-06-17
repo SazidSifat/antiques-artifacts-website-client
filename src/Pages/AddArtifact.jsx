@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../Hooks/useAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -6,8 +6,11 @@ import Swal from 'sweetalert2';
 const AddArtifact = () => {
     const { user } = useAuth();
 
+    const [load, setLoad] = useState(false)
+
 
     const addArtifacts = (e) => {
+        setLoad(true)
         e.preventDefault()
 
         const form = e.target
@@ -26,7 +29,7 @@ const AddArtifact = () => {
             }
         })
             .then(res => {
-                (res.data)
+                setLoad(false)
                 if (res.data.insertedId) {
                     Swal.fire({
                         position: "center",
@@ -36,6 +39,7 @@ const AddArtifact = () => {
                         timer: 1000
                     })
                 }
+                form.reset()
             })
     }
 
@@ -67,7 +71,9 @@ const AddArtifact = () => {
                     <input name="userEmail" value={user.email} readOnly className="p-3 rounded border text-gray-600  border-primary  " required />
                     <textarea rows="4" name="description" placeholder="Short Description" className="p-3 rounded border  border-primary   md:col-span-2" required></textarea>
                     <button type="submit" className="bg-primary cursor-pointer text-primary-content py-3 px-6 rounded hover:opacity-90 md:col-span-2">
-                        Add Artifact
+                        {
+                            load ? <span className="loading loading-bars loading-lg"></span> : "Add Artifact"
+                        }
                     </button>
                 </form>
             </div>

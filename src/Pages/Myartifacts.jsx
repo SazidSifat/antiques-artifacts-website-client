@@ -5,12 +5,15 @@ import MyArtifactsDetails from '../Components/MyArtifactsDetails';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router';
 import { motion } from "motion/react"
+import Loading from '../Components/Loading';
+import DataLoading from '../Components/DataLoading';
 
 const Myartifacts = () => {
   const navigate = useNavigate()
 
   const { user } = useAuth()
   const [artifacts, setArtifacts] = useState([])
+  const [load, setLoad] = useState(true)
 
   useEffect(() => {
 
@@ -19,7 +22,12 @@ const Myartifacts = () => {
         authorization: `Bearer ${user.accessToken}`,
       }
     })
-      .then((res) => setArtifacts(res.data))
+      .then((res) => {
+        setArtifacts(res.data)
+        setLoad(false)
+      }).catch(() => {
+                setLoad(false)
+            })
 
   }, [user.email, user.accessToken])
 
@@ -60,6 +68,11 @@ const Myartifacts = () => {
           })
       }
     });
+  }
+
+
+  if (load) {
+    return <DataLoading />
   }
 
   return (

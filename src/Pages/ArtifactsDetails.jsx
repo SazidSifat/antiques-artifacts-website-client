@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import useAuth from '../Hooks/useAuth';
+import DataLoading from '../Components/DataLoading';
 
 const ArtifactsDetails = () => {
     const { user } = useAuth();
     const params = useParams()
-
-    console.log(params.id)
+    const [load, setLoad] = useState(true)
 
 
     const [data, setData] = useState({})
@@ -27,12 +27,13 @@ const ArtifactsDetails = () => {
         })
             .then((res) => {
                 const artifact = res.data;
+                setLoad(false)
                 setData(artifact);
                 setLikeCounts(artifact.likeCount || 0);
                 setLikeToggle(artifact.likedBy?.includes(user.email));
             })
             .catch((err) => {
-                console.error(err);
+              
             });
     }, [params.id, user.accessToken, user.email]);
 
@@ -48,6 +49,11 @@ const ArtifactsDetails = () => {
                     setLikeToggle(prev => !prev)
                 }
             })
+    }
+    
+
+    if(load){
+        return <DataLoading/>
     }
 
     return (
