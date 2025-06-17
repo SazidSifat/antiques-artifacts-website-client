@@ -14,7 +14,7 @@ const AllArtifacts = () => {
         document.title = "All Artifacts ";
 
 
-        axios.get(`http://localhost:3000/artifacts?search=${search}`)
+        axios.get(` https://assignment-11-server-green-beta.vercel.app/artifacts?search=${search}`)
             .then((res) => {
                 setLoad(false)
                 setArtifacts(res.data)
@@ -29,7 +29,7 @@ const AllArtifacts = () => {
         e.preventDefault()
         const searchValue = e.target.search.value;
      
-        axios.get(`http://localhost:3000/artifacts?search=${searchValue}`)
+        axios.get(` https://assignment-11-server-green-beta.vercel.app/artifacts?search=${searchValue}`)
             .then((res) => setArtifacts(res.data))
 
     }

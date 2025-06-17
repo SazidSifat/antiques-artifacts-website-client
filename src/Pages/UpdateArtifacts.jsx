@@ -12,7 +12,7 @@ const UpdateArtifacts = () => {
     const [load, setLoad] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/artifacts/${id}`, {
+        axios.get(` https://assignment-11-server-green-beta.vercel.app/artifacts/${id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email
@@ -33,7 +33,12 @@ const UpdateArtifacts = () => {
         const formData = new FormData(form)
         const artifacts = Object.fromEntries(formData.entries())
 
-        axios.put(`http://localhost:3000/artifacts/${data._id}`, artifacts)
+        axios.put(`https://assignment-11-server-green-beta.vercel.app/artifacts/${data._id}`, artifacts, {
+            headers: {
+                authorization: `Bearer ${user.accessToken}`,
+                email: user.email
+            }
+        })
             .then(res => {
 
                 if (res.data.matchedCount === 1 && res.data.modifiedCount === 1) {
@@ -58,8 +63,16 @@ const UpdateArtifacts = () => {
                     });
 
                 }
-            }).catch(() => {
-                setLoad(false)
+            }).catch((err) => {
+                setLoad(false);
+                console.error(err);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Update Failed!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
     }
 

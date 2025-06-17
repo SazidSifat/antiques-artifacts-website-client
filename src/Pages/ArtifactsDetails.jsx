@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useLoaderData, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import useAuth from '../Hooks/useAuth';
 import DataLoading from '../Components/DataLoading';
+import { AiFillLike } from "react-icons/ai";
+import { AiFillDislike } from "react-icons/ai";
+import { motion } from 'motion/react';
 
 const ArtifactsDetails = () => {
     const { user } = useAuth();
@@ -17,7 +20,7 @@ const ArtifactsDetails = () => {
     const [liketoggle, setLikeToggle] = useState(false)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/artifacts/${params.id}`, {
+        axios.get(`https://assignment-11-server-green-beta.vercel.app/artifacts/${params.id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email
@@ -33,13 +36,13 @@ const ArtifactsDetails = () => {
                 setLikeToggle(artifact.likedBy?.includes(user.email));
             })
             .catch((err) => {
-              
+
             });
     }, [params.id, user.accessToken, user.email]);
 
     // liked
     const liked = () => {
-        axios.patch(`http://localhost:3000/like-artifacts/${data._id}`, { email: user.email })
+        axios.patch(` https://assignment-11-server-green-beta.vercel.app/like-artifacts/${data._id}`, { email: user.email })
             .then(res => {
                 if (res.data.like) {
                     setLikeCounts(res.data.likeCount);
@@ -50,21 +53,21 @@ const ArtifactsDetails = () => {
                 }
             })
     }
-    
 
-    if(load){
-        return <DataLoading/>
+
+    if (load) {
+        return <DataLoading />
     }
 
     return (
         <div className='container mx-auto px-24 bg-base-200 my-10 rounded'>
-            <div className='px-6 py-10 space-y-6'>
+            <div className='lg:px-6 py-10 space-y-6'>
 
-                <div className='grid grid-cols-3 gap-10'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                     <div className=' flex items-center justify-center py-6 rounded '>
-                        <img src={image} alt="" className='w-[75%] h-[410px] rounded' />
+                        <img src={image} alt="" className='lg:w-[75%] h-[410px] rounded' />
                     </div>
-                    <div className='col-span-2 py-6 space-y-2'>
+                    <div className='lg:col-span-2 py-6 space-y-2'>
                         <div>
                             <h1 className='text-4xl text-secondary'>{name}.</h1>
                             <p className='py-1 '><span className='text-secondary font-bold'>Type : </span><span className='text-sm'>{type}</span></p>
@@ -83,7 +86,7 @@ const ArtifactsDetails = () => {
                         </div>
                         <hr className='text-base-300 ' />
                         <p className='py-1 '><span className='text-secondary font-bold'>Total Likes : </span><span  >{likeCounts}</span></p>
-                        <button onClick={liked} className={`py-3 px-8 ${liketoggle ? "bg-secondary" : "bg-primary"} text-primary-content  rounded`}>{liketoggle ? "Liked" : "Like"}</button>
+                        <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .99 }} onClick={liked} className={`py-3 px-8 cursor-pointer ${liketoggle ? "bg-error/80" : "bg-primary"} text-primary-content  rounded`}>{liketoggle ? <p className='flex items-center justify-center gap-1' >Dislike < AiFillDislike /></p> : <p className='flex items-center justify-center gap-1' >Like < AiFillLike /></p>}</motion.button>
 
                     </div>
                 </div>

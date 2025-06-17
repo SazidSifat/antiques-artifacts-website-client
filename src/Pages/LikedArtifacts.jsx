@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import useAuth from '../Hooks/useAuth';
 import axios from 'axios';
 import MyArtifactsDetails from '../Components/MyArtifactsDetails';
@@ -13,9 +13,10 @@ const LikedArtifacts = () => {
     const [load, setLoad] = useState(true)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/liked?email=${user.email}`, {
+        axios.get(`https://assignment-11-server-green-beta.vercel.app/liked?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
+                email: user.email
             }
         })
             .then((res) => {
@@ -30,8 +31,8 @@ const LikedArtifacts = () => {
 
 
 
-    if(load){
-        return <DataLoading/>
+    if (load) {
+        return <DataLoading />
     }
 
     return (

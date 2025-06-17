@@ -17,17 +17,18 @@ const Myartifacts = () => {
 
   useEffect(() => {
 
-    axios.get(`http://localhost:3000/myArtifacts?email=${user.email}`, {
+    axios.get(` https://assignment-11-server-green-beta.vercel.app/myArtifacts?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
+        email: user.email
       }
     })
       .then((res) => {
         setArtifacts(res.data)
         setLoad(false)
       }).catch(() => {
-                setLoad(false)
-            })
+        setLoad(false)
+      })
 
   }, [user.email, user.accessToken])
 
@@ -45,7 +46,7 @@ const Myartifacts = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/artifacts/${id}`, {
+        axios.delete(` https://assignment-11-server-green-beta.vercel.app/artifacts/${id}`, {
           headers: {
             authorization: `Bearer ${user.accessToken}`,
             email: user.email

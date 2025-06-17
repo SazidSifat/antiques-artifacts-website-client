@@ -14,7 +14,7 @@ const FeatureCards = () => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:3000/featureCardinitial')
+        axios.get(' https://assignment-11-server-green-beta.vercel.app/featureCardinitial')
             .then(res => {
                 setLoad(false)
                 setFeatures(res.data)
