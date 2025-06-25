@@ -68,31 +68,31 @@ Follow these steps to run the client project locally on your machine:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/SazidSifat/Lancr-freelanching-website-client.git
-cd Lancr-freelanching-website-client
+git clone https://github.com/SazidSifat/antiques-artifacts-website-client.git
+cd antiques-artifacts-website-client
 ```
 
 ### Dependencies
 ```json
 {
-     "dependencies": {
+   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@tailwindcss/vite": "^4.1.7",
-    "daisyui": "^5.0.35",
-    "firebase": "^11.8.0",
-    "framer-motion": "^12.12.1",
-    "motion": "^12.12.1",
+    "@tailwindcss/vite": "^4.1.8",
+    "axios": "^1.9.0",
+    "daisyui": "^5.0.43",
+    "firebase": "^11.9.1",
+    "lottie-react": "^2.4.1",
+    "motion": "^12.17.3",
     "react": "^19.1.0",
     "react-awesome-reveal": "^4.3.1",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "react-router": "^7.6.0",
-    "react-simple-typewriter": "^5.0.1",
+    "react-masonry-css": "^1.0.16",
+    "react-router": "^7.6.2",
     "react-toastify": "^11.0.5",
-    "sweetalert2": "^11.21.2",
-    "swiper": "^11.2.7",
-    "tailwindcss": "^4.1.7",
-    "typewriter-effect": "^2.22.0"
+    "sweetalert2": "^11.22.0",
+    "swiper": "^11.2.8",
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
