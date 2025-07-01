@@ -19,7 +19,7 @@ const testimonials = [
         name: "John D.",
         role: "Archaeology Student",
         feedback:
-            "The detailed descriptions and user-friendly design make exploring artifacts enjoyable and educational.",
+            "Finally, a digital space that brings historical treasures to light. A fantastic resource for curators and enthusiasts alike.",
     },
     {
         name: "Anika R.",
@@ -90,6 +90,7 @@ const PeopleSays = () => {
                     modules={[FreeMode, Pagination, Autoplay]}
                     autoplay={{ delay: 2000 }}
                     className="pb-8"
+                    loop={true}
                 >
                     {testimonials.map(({ name, role, feedback }, i) => (
                         <SwiperSlide key={i}>

@@ -6,26 +6,61 @@ import { motion } from 'motion/react';
 const ArtifactsCard = ({ art }) => {
 
     const { _id, name, image, context, discoveredAt, createdAt } = art
+
+
+    const half = Math.floor(context.length / 2)
+    const halfContext = context.slice(0, half) + "..."
+
+    console.log(context)
+    console.log(halfContext)
+
+
+
+
+
+
     return (
 
-        <div className='p-6 space-y-6 border border-primary rounded bg-base-200'>
-            <div className='flex items-center justify-center bg-base-100 py-4 rounded'>
-                <img src={image} alt="" className='w-[60%] h-[25vh] rounded' />
+        <div className="p-5 bg-base-200 border border-primary rounded-lg flex flex-col justify-between h-full shadow-sm">
+            <div className="bg-base-100 rounded-md flex justify-center items-center overflow-hidden h-[25vh] mb-4">
+                <img
+                    src={image}
+                    alt={name}
+                    className="h-full object-cover rounded"
+                />
             </div>
-            <div className='  space-y-2 md:space-y-4'>
-                <div className='md:space-y-2'>
-                    <h1 className='text-2xl'>{name}.</h1>
-                    <p className='opacity-80 text-xs h-[50px] overflow-hidden'>{context}</p>
-                </div>
-                <hr className='text-base-300' />
-                <div className='flex flex-col md:flex-row md:items-center justify-between md:px-3 opacity-80 '>
-                    <span className='font-semibold'>Created At : {createdAt}</span>
-                    <span className='font-semibold'>Discovered At : {discoveredAt}</span>
-                </div>
-                <hr className='text-base-300' />
 
-                <Link to={`/artifacts-details/${_id}`}>
-                    <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: .99 }} className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</motion.button>
+
+            <div className="flex flex-col justify-between flex-1 space-y-4">
+
+                <div className="space-y-1">
+                    <h2 className="text-xl font-semibold text-center md:text-left truncate">
+                        {name}
+                    </h2>
+                    <p
+                        className="text-sm text-gray-500 h-[50px] overflow-hidden text-center md:text-left"
+                    >
+                        {halfContext}
+                    </p>
+                </div>
+
+                <hr className="border-base-300" />
+
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 text-sm text-gray-600 px-1">
+                    <span><strong>Created:</strong> {createdAt}</span>
+                    <span><strong>Discovered:</strong> {discoveredAt}</span>
+                </div>
+
+                <hr className="border-base-300" />
+
+                <Link to={`/artifacts-details/${_id}`} className="mt-auto">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full py-3 rounded bg-secondary text-primary-content font-medium hover:opacity-90"
+                    >
+                        View Details
+                    </motion.button>
                 </Link>
             </div>
         </div>

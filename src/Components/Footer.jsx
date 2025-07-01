@@ -17,19 +17,18 @@ const Footer = () => {
                     <div className="space-y-3">
                         <h3 className="tracking-wide uppercase ">Links</h3>
                         <ul className="space-y-1 flex flex-col">
-                            <Link className='py-1' to='/'>Home</Link>
-                            <Link className='py-1' to='/all-artifacts'>All Artifacts</Link>
-                            <Link className='py-1' to='/add-artifacts'>Add Artifacts</Link>
+                            <Link className='py-1 hover:text-primary' to='/'>Home</Link>
+                            <Link className='py-1 hover:text-primary' to='/all-artifacts'>All Artifacts</Link>
                         </ul>
                     </div>
                     <div className="space-y-3">
                         <h3 className="tracking-wide uppercase ">Company</h3>
                         <ul className="space-y-1">
                             <li>
-                                <a rel="noopener noreferrer" href="#">Privacy</a>
+                                <Link to='/about' className='py-1 hover:text-primary'>About</Link>
                             </li>
                             <li>
-                                <a rel="noopener noreferrer" href="#">Terms of Service</a>
+                                <Link to='/about' className='py-1 hover:text-primary'>Contact</Link>
                             </li>
                         </ul>
                     </div>
@@ -37,13 +36,13 @@ const Footer = () => {
                     <div className="space-y-3">
                         <div className="uppercase ">Social media</div>
                         <div className="flex justify-start space-x-3">
-                            <a rel="noopener noreferrer" href="#" title="Facebook" className="flex items-center p-1">
+                            <a target='_blank' rel="noopener noreferrer" href="https://www.facebook.com/" title="Facebook" className="flex items-center p-1">
                                 <FaFacebook size={25} />
                             </a>
-                            <a rel="noopener noreferrer" href="#" title="Twitter" className="flex items-center p-1">
+                            <a target='_blank' rel="noopener noreferrer" href="https://www.x.com/" title="Twitter" className="flex items-center p-1">
                                 <BsTwitterX size={25} />
                             </a>
-                            <a rel="noopener noreferrer" href="#" title="Instagram" className="flex items-center p-1">
+                            <a target='_blank' rel="noopener noreferrer" href="https://www.instagram.com/" title="Instagram" className="flex items-center p-1">
                                 <FaInstagram size={25} />
                             </a>
                         </div>

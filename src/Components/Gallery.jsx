@@ -48,7 +48,7 @@ const Gallery = () => {
     return (
         <div className="container mx-auto py-10 space-y-10 px-6 md:px-0" >
 
-            <h2 className='text-4xl text-center font-bold '>Gallery. </h2>
+            <h2 className='text-4xl text-center font-bold text-primary '>Gallery. </h2>
             <Masonry
                 breakpointCols={breakpointColumnsObj}
                 className="flex  gap-6"

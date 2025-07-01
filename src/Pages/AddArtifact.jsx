@@ -24,7 +24,7 @@ const AddArtifact = () => {
 
 
 
-        axios.post(' https://assignment-11-server-green-beta.vercel.app/artifacts', artifact, {
+        axios.post(' http://localhost:3000/artifacts', artifact, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email

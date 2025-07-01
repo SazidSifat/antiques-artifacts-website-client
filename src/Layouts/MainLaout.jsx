@@ -28,7 +28,7 @@ const MainLaout = () => {
                 theme="dark"
                 transition={Zoom}
             />
-            <header className='border-b border-base-300'>
+            <header className=' bg-primary text-primary-content sticky z-50 top-0 '>
                 <Navbar />
 
             </header>

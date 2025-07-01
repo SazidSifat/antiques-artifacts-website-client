@@ -15,7 +15,7 @@ const FeatureCards = () => {
 
     useEffect(() => {
 
-        axios.get(' https://assignment-11-server-green-beta.vercel.app/featureCardinitial')
+        axios.get(' http://localhost:3000/featureCardinitial')
             .then(res => {
                 setLoad(false)
                 setFeatures(res.data)
@@ -32,10 +32,10 @@ const FeatureCards = () => {
 
 
     return (
-        <div className='my-10 container mx-auto space-y-10'>
+        <div className=' container mx-auto space-y-10'>
             <h2 className='text-3xl font-bold text-center text-primary '> Fetures Artifacts Collection.</h2>
             <Fade>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 px-6 md:px-0'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-6 px-6 md:px-0'>
 
                     {
                         features.map(art => <FeatureCard key={art._id} art={art} />)

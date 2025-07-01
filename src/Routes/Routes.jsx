@@ -13,6 +13,8 @@ import Myartifacts from "../Pages/Myartifacts";
 import UpdateArtifacts from "../Pages/UpdateArtifacts";
 import LikedArtifacts from "../Pages/LikedArtifacts";
 import Loading from "../Components/Loading";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
 
 
 export const routes = createBrowserRouter([
@@ -56,8 +58,16 @@ export const routes = createBrowserRouter([
             {
                 path: '/signUp',
                 Component: Signup
-
             },
+            {
+                path:"/about",
+                Component:About
+            },{
+                
+                path:"/contact",
+                Component:Contact
+            }
+            
         ]
     },
     {

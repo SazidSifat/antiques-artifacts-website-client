@@ -4,46 +4,42 @@ import { MdDeleteForever } from "react-icons/md";
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import { motion } from 'motion/react';
+import { FaRegEye } from "react-icons/fa6";
+import { MdDeleteOutline } from "react-icons/md";
 
 const MyArtifactsDetails = ({ artifact, handleDelete }) => {
+    const { _id, name, type, image, createdAt } = artifact
+
 
     return (
-        <div
-            key={artifact._id}
-            className="  bg-base-200 rounded  border border-primary"
-        >
-            <div className='p-6'>
-                <img
-                    src={artifact.image} className="h-[25vh] w-full rounded"
-                />
-            </div>
-            <div className="p-5 flex flex-col gap-3">
-                <h3 className="text-2xl font-semibold text-primary leading-tight truncate">{artifact.name}</h3>
 
-                <p className="text-sm text-text-secondary line-clamp-3">{artifact.description}</p>
-                <div className="mt-4 flex items-center justify-center w-full gap-3">
-                    <Link to={`/update-artifacts/${artifact._id}`} className='flex-1 w-full'>
-                        <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .99 }}
-                            className="w-full px-4 py-3 rounded bg-secondary text-secondary-content text-sm font-medium hover:opacity-90 "
-                        >
-                            Update
-                        </motion.button>
+        <tr key={artifact._id} className="border-t  hover:bg-base-200 transitio  ">
+            <td className="px-4 py-2">
+                <img
+                    src={image}
+                    alt={name}
+                    className="h-16 w-auto rounded"
+                />
+            </td>
+            <td className="px-4 py-2 font-medium">{name}</td>
+            <td className="px-4 py-2">{type || 'N/A'}</td>
+            <td className="px-4 py-2">{createdAt || 'N/A'}</td>
+            <td className="px-4 py-2">
+                <div className="flex items-center justify-center gap-3">
+                    <Link to={`/artifacts-details/${_id}`} className="p-2 bg-base-300 rounded hover:bg-base-300 transition">
+                        <FaRegEye size={22} />
                     </Link>
-                    <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .99 }} onClick={() => handleDelete(artifact._id)}
-                        className="flex-1 w-full px-4 py-3 rounded bg-error text-error-content text-sm font-medium hover:opacity-90 ">
-                        Delete
-                    </motion.button>
+                    <Link to={`/update-artifacts/${_id}`} className="p-2 bg-base-300 rounded hover:bg-base-300 transition">
+                        <FaEdit size={22} />
+                    </Link>
+                    <button onClick={() => handleDelete(_id)} className="p-2 bg-red-400 rounded hover:bg-red-300 transition">
+                        <MdDeleteOutline size={22} className='text-white' />
+                    </button>
                 </div>
 
-                <Link to={`/artifacts-details/${artifact._id}`}>
-                    <motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: .99 }}
-                        className=" w-full px-4 py-3 rounded bg-primary text-primary-content text-sm font-medium hover:opacity-90 ">
-                        Show Details
-                    </motion.button>
-                </Link>
+            </td>
+        </tr>
 
-            </div>
-        </div>
     );
 };
 

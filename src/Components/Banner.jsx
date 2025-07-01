@@ -15,7 +15,7 @@ const Banner = () => {
                 modules={[Pagination, Navigation, Autoplay]}
                 autoplay={{ delay: 3000 }}
                 loop={true}
-                className="mySwiper min-h-[90vh]">
+                className="mySwiper min-h-[70vh]">
                 {/* one */}
                 <SwiperSlide className=''>
                     <div style={{
@@ -23,7 +23,7 @@ const Banner = () => {
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
                         backgroundSize: "cover",
-                    }} className='h-[90vh] flex  items-center justify-center'>
+                    }} className='h-[70vh] flex  items-center justify-center'>
 
                         <div className='flex items-center flex-col justify-center gap-4 overflow-hidden py-6'>
 
@@ -57,7 +57,7 @@ const Banner = () => {
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
                         backgroundSize: "cover",
-                    }} className='h-[90vh] flex  items-center justify-center'>
+                    }} className='h-[70vh] flex  items-center justify-center'>
                         <div className='flex items-center flex-col justify-center gap-4 overflow-hidden py-6'>
 
                             <Slide direction='down' duration={1500} className=''>
@@ -76,10 +76,6 @@ const Banner = () => {
                             </Slide>
 
                         </div>
-
-
-
-
                     </div>
                 </SwiperSlide>
 
@@ -91,7 +87,7 @@ const Banner = () => {
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
                         backgroundSize: "cover",
-                    }} className='h-[90vh] flex  items-center justify-center'>
+                    }} className='h-[70vh] flex  items-center justify-center'>
                         <div className='flex items-center flex-col justify-center gap-4 overflow-hidden py-6'>
 
                             <Slide duration={1500} direction='down' className=''>

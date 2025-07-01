@@ -2,27 +2,25 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const LikedArtifactsdetails = ({ artifact }) => {
-    const { _id, name, image, context, discoveredAt, createdAt } = artifact
+    const { _id, name, type, image, createdAt } = artifact
     return (
 
-        <div className='p-6 space-y-6 border border-primary rounded bg-base-200'>
-            <div className='flex items-center justify-center bg-base-100 py-4 rounded'>
-                <img src={image} alt="" className='w-[60%] h-[25vh] rounded' />
-            </div>
-            <div className='  space-y-2 md:space-y-4'>
-                <div className='md:space-y-2'>
-                    <h1 className='text-2xl'>{name}.</h1>
-                    <p className='opacity-80 text-xs h-[50px] overflow-hidden'>{context}</p>
-                </div>
-                <hr className='text-base-300' />
-                <Link to={`/artifacts-details/${_id}`}>
-                    <button className='py-3 bg-secondary w-full rounded hover:opacity-90 text-primary-content'>View Details</button>
-                </Link>
 
-
-            </div>
-
-        </div>
+        <tr key={artifact._id} className="border-t  hover:bg-base-200 transition">
+            <td className="px-4 py-2">
+                <img
+                    src={image}
+                    alt={name}
+                    className="h-16 w-auto rounded"
+                />
+            </td>
+            <td className="px-4 py-2 font-medium">{name}</td>
+            <td className="px-4 py-2">{type || 'N/A'}</td>
+            <td className="px-4 py-2">{createdAt || 'N/A'}</td>
+            <td className="px-4 py-2">
+                <Link to={`/artifacts-details/${_id}`} className='py-3 px-4 bg-primary rounded text-primary-content'>View</Link>
+            </td>
+        </tr>
 
     );
 };

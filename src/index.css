@@ -47,8 +47,8 @@
   --color-base-300: #2A2A2A;
   --color-base-content: #E0E0E0;
 
-  --color-primary: #DFA15C;
-  --color-primary-content: #1E1E1E;
+  --color-primary: #8B5E3C;
+  --color-primary-content: #FFFFFF;
 
   --color-secondary: #BC7E4B;
   --color-secondary-content: #121212;
@@ -75,8 +75,8 @@
 }
 
 .active {
-  color: #8B5E3C;
-  border-bottom: 1px solid #8B5E3C;
+  color: #E9C46A;
+  border-bottom: 1px solid #E9C46A;
 }
 
 

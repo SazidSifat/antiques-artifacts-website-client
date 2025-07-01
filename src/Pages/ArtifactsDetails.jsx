@@ -23,7 +23,7 @@ const ArtifactsDetails = () => {
 
            document.title = "Artifacts Details"
         
-        axios.get(`https://assignment-11-server-green-beta.vercel.app/artifacts/${params.id}`, {
+        axios.get(`http://localhost:3000/artifacts/${params.id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email
@@ -45,7 +45,7 @@ const ArtifactsDetails = () => {
 
     // liked
     const liked = () => {
-        axios.patch(` https://assignment-11-server-green-beta.vercel.app/like-artifacts/${data._id}`, { email: user.email }, {
+        axios.patch(` http://localhost:3000/like-artifacts/${data._id}`, { email: user.email }, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email

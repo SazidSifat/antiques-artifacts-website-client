@@ -16,10 +16,10 @@ const Myartifacts = () => {
   const [load, setLoad] = useState(true)
 
   useEffect(() => {
-        document.title = "My Artifacts";
+    document.title = "My Artifacts";
 
 
-    axios.get(` https://assignment-11-server-green-beta.vercel.app/myArtifacts?email=${user.email}`, {
+    axios.get(` http://localhost:3000/myArtifacts?email=${user.email}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
         email: user.email
@@ -48,7 +48,7 @@ const Myartifacts = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(` https://assignment-11-server-green-beta.vercel.app/artifacts/${id}`, {
+        axios.delete(` http://localhost:3000/artifacts/${id}`, {
           headers: {
             authorization: `Bearer ${user.accessToken}`,
             email: user.email
@@ -80,16 +80,37 @@ const Myartifacts = () => {
 
   return (
     <div className="min-h-[60vh] bg-background p-6 text-text-primary">
-      <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-primary mb-10 text-center">My Artifacts Collection</h2>
-        {
-          artifacts.length === 0 ? <div className='flex lg:w-6/12 gap-6 mx-auto whitespace-nowrap mt-10 items-center flex-col justify-center border border-base-300 p-10'>
-            <p className=' text-2xl text-center text-gray-500'>No Artifacts Found !</p>
-            <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: .9 }}><Link to='/add-artifacts' className='py-3 bg-secondary px-8 rounded  text-secondary-content'>Add an Artifacts</Link></motion.button>
-          </div> : <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {artifacts.map(artifact => <MyArtifactsDetails artifact={artifact} handleDelete={handleDelete} />)}
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-10 text-center">
+          Favourite Artifacts Collection
+        </h2>
+
+        {artifacts.length === 0 ? (
+          <p className="py-10 text-2xl text-center text-gray-500">
+            No Liked Artifacts Found!
+          </p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full text-left border border-primary rounded-lg overflow-hidden">
+              <thead className="bg-primary text-white">
+                <tr>
+                  <th className="px-4 py-3">Image</th>
+                  <th className="px-4 py-3">Name</th>
+                  <th className="px-4 py-3">Tyoe</th>
+                  <th className="px-4 py-3">Created</th>
+                  <th className="px-4 py-3 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="bg-base-100">
+                {artifacts.map((artifact) => (
+
+                  <MyArtifactsDetails artifact={artifact} handleDelete={handleDelete} />
+
+                ))}
+              </tbody>
+            </table>
           </div>
-        }
+        )}
       </div>
     </div>
   );
