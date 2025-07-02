@@ -39,9 +39,16 @@ const AllArtifacts = () => {
 
         axios.get(`http://localhost:3000/artifacts/filter-by?filter=${filter}`)
             .then((res) => setArtifacts(res.data))
+    }
 
+    const handleSort = (e) => {
+        e.preventDefault()
+        const sort = e.target.value;
 
+        console.log(sort)
 
+        axios.get(`http://localhost:3000/artifacts/filter-by?sort=${sort}`)
+            .then((res) => setArtifacts(res.data))
     }
 
 
@@ -63,14 +70,51 @@ const AllArtifacts = () => {
 
 
                 </div>
-                <div className='flex items-center justify-end'>
-                    <select onChange={handleFilter} name="select" id="" defaultValue="Sort By" className='border cursor-pointer w-full md:w-fit md:px-5 py-2 md:py-3 lg:py-4 rounded border-primary text-primary focus:outline-0'>
-                        <option className='bg-base-300 ' value="">All</option>
-                        <option className='bg-base-300 ' value="Tools">Tools</option>
-                        <option className='bg-base-300 ' value="Weapons">Weapons</option>
-                        <option className='bg-base-300 ' value="Documents">Documents</option>
-                        <option className='bg-base-300 ' value="Writings">Writings</option>
-                    </select>
+                <div className="flex flex-col md:flex-row gap-3 w-full items-center justify-between">
+                    <div className="flex items-center justify-end w-full md:w-auto">
+                        <select
+                            onChange={handleFilter}
+                            name="select1"
+                            defaultValue=""
+                            className="border cursor-pointer w-full md:w-fit md:px-5 py-2 md:py-3 lg:py-4 rounded border-primary text-primary focus:outline-0"
+                        >
+                            <option className="bg-base-300" value="">
+                                All
+                            </option>
+                            <option className="bg-base-300" value="Tools">
+                                Tools
+                            </option>
+                            <option className="bg-base-300" value="Weapons">
+                                Weapons
+                            </option>
+                            <option className="bg-base-300" value="Documents">
+                                Documents
+                            </option>
+                            <option className="bg-base-300" value="Writings">
+                                Writings
+                            </option>
+                        </select>
+                    </div>
+
+                    <div className="flex items-center justify-end w-full md:w-auto">
+                        <select
+                            onChange={handleSort}
+                            name="sort"
+                            defaultValue=""
+                            className="border cursor-pointer w-full md:w-fit md:px-5 py-2 md:py-3 lg:py-4 rounded border-primary text-primary focus:outline-0"
+                        >
+                            <option className="bg-base-300" value="">
+                                Default
+                            </option>
+                            <option className="bg-base-300" value="atoz">
+                                A to Z
+                            </option>
+                            <option className="bg-base-300" value="ztoa">
+                                Z to A
+                            </option>
+
+                        </select>
+                    </div>
                 </div>
             </div>
 

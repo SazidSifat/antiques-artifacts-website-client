@@ -65,7 +65,7 @@ const Navbar = () => {
                         <div className={`absolute z-10 ${drop ? "top-20" : "-top-96"} right-6 lg:right-48 duration-500 p-6 bg-base-300 whitespace-nowrap rounded`}>
                             <div className='flex flex-col items-start gap-3 heading text-base-content font-semibold'>
                                 <h1 className='font-bold'>Name: {user.displayName}</h1>
-                                <NavLink onClick={() => setToggle(!toggle)} className='py-1' to='/add-artifacts'>Add Artifacts</NavLink>
+                                <NavLink onClick={() => setToggle(!toggle)} className='py-1 hover:text-primary hover:underline' to='/add-artifacts'>Add Artifacts</NavLink>
                                 <Link onClick={() => { setDrop(!drop) }} to='/myArtifacts' className='hover:text-primary hover:underline'>My Artifacts</Link>
                                 <Link onClick={() => { setDrop(!drop) }} to='/myLikedArtifacts' className='hover:text-primary hover:underline'>Liked Artifacts</Link>
                                 <button onClick={handlesignOutUser} className='py-2.5 px-5  text-white bg-red-400 rounded hover:opacity-90'>
@@ -78,10 +78,10 @@ const Navbar = () => {
 
                     </div> :
                         <div className=' heading font-semibold flex items-center  gap-6'>
-                            <Link to='/login' className='py-3 px-6 hover:opacity-90 border border-primary rounded'>
+                            <Link to='/login' className='py-3 px-6 hover:opacity-90 border border-secondary text-primary-content rounded'>
                                 Log In
                             </Link>
-                            <Link to='/signUp' className='py-3 px-6 hover:opacity-90 bg-primary text-primary-content rounded hidden lg:block'>
+                            <Link to='/signUp' className='py-3 px-6 hover:opacity-90 bg-secondary text-secondary-content rounded hidden lg:block'>
                                 Sign Up
                             </Link>
 
