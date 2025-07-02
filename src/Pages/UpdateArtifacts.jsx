@@ -14,7 +14,7 @@ const UpdateArtifacts = () => {
     useEffect(() => {
         document.title = "Update Artifacts";
 
-        axios.get(` http://localhost:3000/artifacts/${id}`, {
+        axios.get(` https://assignment-11-server-green-beta.vercel.app/artifacts/${id}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email
@@ -35,7 +35,7 @@ const UpdateArtifacts = () => {
         const formData = new FormData(form)
         const artifacts = Object.fromEntries(formData.entries())
 
-        axios.put(`http://localhost:3000/artifacts/${data._id}`, artifacts, {
+        axios.put(`https://assignment-11-server-green-beta.vercel.app/artifacts/${data._id}`, artifacts, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email

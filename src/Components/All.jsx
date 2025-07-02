@@ -150,7 +150,7 @@ const All = () => {
 
 
     useEffect(() => {
-        axios.post(" http://localhost:3000/all", name)
+        axios.post(" https://assignment-11-server-green-beta.vercel.app/all", name)
             .then(res =>  (res.data))
     }, [])
 

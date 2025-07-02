@@ -15,7 +15,7 @@ const LikedArtifacts = () => {
 
         document.title = "My Liked Artifacts";
 
-        axios.get(`http://localhost:3000/liked?email=${user.email}`, {
+        axios.get(`https://assignment-11-server-green-beta.vercel.app/liked?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email

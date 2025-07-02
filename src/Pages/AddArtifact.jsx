@@ -20,7 +20,7 @@ const AddArtifact = () => {
         const artifact = Object.fromEntries(formData.entries());
         artifact.likeCount = 0;
 
-        axios.post('http://localhost:3000/artifacts', artifact, {
+        axios.post('https://assignment-11-server-green-beta.vercel.app/artifacts', artifact, {
             headers: {
                 authorization: `Bearer ${user.accessToken}`,
                 email: user.email
