@@ -39,14 +39,14 @@ const AddArtifact = () => {
                     form.reset();
                 }
             })
-            .catch(err => {
+            .catch(() => {
                 setLoad(false);
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Something went wrong while adding the artifact!',
                 });
-                 .error(err);
+                 
             });
     };
 
