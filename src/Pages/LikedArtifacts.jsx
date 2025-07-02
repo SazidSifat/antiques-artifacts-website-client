@@ -24,8 +24,8 @@ const LikedArtifacts = () => {
             .then((res) => {
                 setArtifacts(res.data);
             })
-            .catch((err) => {
-                 .error("Error fetching liked artifacts:", err);
+            .catch(() => {
+                
             })
             .finally(() => {
                 setLoad(false);
