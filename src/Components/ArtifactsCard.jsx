@@ -11,8 +11,8 @@ const ArtifactsCard = ({ art }) => {
     const half = Math.floor(context.length / 2)
     const halfContext = context.slice(0, half) + "..."
 
-    console.log(context)
-    console.log(halfContext)
+     .log(context)
+     .log(halfContext)
 
 
 

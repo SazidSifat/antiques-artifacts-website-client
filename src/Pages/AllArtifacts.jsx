@@ -45,7 +45,7 @@ const AllArtifacts = () => {
         e.preventDefault()
         const sort = e.target.value;
 
-        console.log(sort)
+         .log(sort)
 
         axios.get(`https://assignment-11-server-green-beta.vercel.app/artifacts/filter-by?sort=${sort}`)
             .then((res) => setArtifacts(res.data))

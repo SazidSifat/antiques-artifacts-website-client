@@ -46,7 +46,7 @@ const AddArtifact = () => {
                     title: 'Oops...',
                     text: 'Something went wrong while adding the artifact!',
                 });
-                console.error(err);
+                 .error(err);
             });
     };
 
