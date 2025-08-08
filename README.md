@@ -49,8 +49,9 @@ Protected: Update Form |
 
 ## 📦 NPM Packages Used
 
-### Client
-- `react-router-dom`
+### Technology
+- `react`
+- `react-router`
 - `firebase`
 - `axios`
 - `react-toastify`
