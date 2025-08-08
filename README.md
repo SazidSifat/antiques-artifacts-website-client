@@ -47,20 +47,15 @@ Protected: Update Form |
 
 ---
 
-## 📦 NPM Packages Used
-
-### Technology
+## 📦Technology Used
 - `react`
+- `tailwind`
+- `Node Js`
+- `Express`
+- `mongoDB`
 - `react-router`
 - `firebase`
 - `axios`
-- `react-toastify`
-- `sweetalert2`
-- `framer-motion`
-- `mambaUi` (Tailwind Component Library)
-- `react-icons`
-- `react-awesome-reveal`
-
 ---
 
 ### 🧑‍💻 Local Setup Instructions
