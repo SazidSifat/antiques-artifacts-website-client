@@ -5,7 +5,7 @@ const NewsletterSignup = () => {
     <section className="bg-base-200 max-w-7xl mx-auto mb-10 py-16 px-4">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">
-          📜 Stay Updated with History
+        Stay Updated with History
         </h2>
         <p className="text-base-content/80 mb-6">
           Subscribe to get the latest historical artifacts, stories, and
