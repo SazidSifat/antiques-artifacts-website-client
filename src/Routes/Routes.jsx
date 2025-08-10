@@ -8,7 +8,6 @@ import Signup from "../Pages/Auth/Signup";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AddArtifact from "../Pages/AddArtifact";
 import ArtifactsDetails from "../Pages/ArtifactsDetails";
-import axios from "axios";
 import Myartifacts from "../Pages/Myartifacts";
 import UpdateArtifacts from "../Pages/UpdateArtifacts";
 import LikedArtifacts from "../Pages/LikedArtifacts";
